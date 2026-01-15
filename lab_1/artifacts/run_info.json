@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-01-15T12:24:28.249864Z",
+  "config": {
+    "data": {
+      "path": "data/dataset.csv",
+      "target": "Exited"
+    },
+    "split": {
+      "test_size": 0.2,
+      "random_state": 42,
+      "stratify": true
+    },
+    "model": {
+      "name": "logistic_regression",
+      "max_iter": 3000,
+      "class_weight": "balanced"
+    }
+  },
+  "versions": {
+    "python": "3.11.14 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 18:30:03) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.5.1"
+  },
+  "report": {
+    "0": {
+      "precision": 0.8990536277602523,
+      "recall": 0.7165304839723444,
+      "f1-score": 0.7974816369359916,
+      "support": 1591.0
+    },
+    "1": {
+      "precision": 0.3821917808219178,
+      "recall": 0.6855036855036855,
+      "f1-score": 0.49076517150395776,
+      "support": 407.0
+    },
+    "accuracy": 0.7102102102102102,
+    "macro avg": {
+      "precision": 0.640622704291085,
+      "recall": 0.7010170847380149,
+      "f1-score": 0.6441234042199747,
+      "support": 1998.0
+    },
+    "weighted avg": {
+      "precision": 0.7937669552357768,
+      "recall": 0.7102102102102102,
+      "f1-score": 0.7350023569405773,
+      "support": 1998.0
+    }
+  }
+}
