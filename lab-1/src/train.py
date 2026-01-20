@@ -29,6 +29,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report
+from imblearn.over_sampling import SMOTE
 
 from validate_data import validate_dataset
 
@@ -102,37 +103,49 @@ def main():
         random_state=rs,
         stratify=strat
     )
-
-    # 6) Preprocessing pipeline + model
+    
+    # 6) Preprocess the data FIRST
     pre = make_preprocess(numeric_cols=numeric_cols, cat_cols=cat_cols)
 
+    # Transform training data
+    Xtr_preprocessed = pre.fit_transform(Xtr)
+    # Transform test data (using same preprocessing)
+    Xte_preprocessed = pre.transform(Xte)
+
+    # 6.1) Apply SMOTE to preprocessed training data
+    print(f"Before SMOTE - Class distribution:")
+    print(ytr.value_counts())
+
+    smote = SMOTE(random_state=rs)
+    Xtr_balanced, ytr_balanced = smote.fit_resample(Xtr_preprocessed, ytr)
+
+    print(f"After SMOTE - Class distribution:")
+    print(pd.Series(ytr_balanced).value_counts())
+
+    # 6.2) Create model (without preprocessing in pipeline, we already did it)
     model_cfg = cfg["model"]
     model = LogisticRegression(
         max_iter=int(model_cfg["max_iter"]),
-        class_weight=(None if str(model_cfg.get("class_weight", "None")).lower() == "none" else model_cfg.get("class_weight", None)),
+        class_weight=None,
         solver=model_cfg.get("solver", "liblinear"),
         random_state=rs
     )
 
-    pipe = Pipeline(steps=[("preprocess", pre), ("model", model)])
-
     ART.mkdir(exist_ok=True)
 
-    # 7) Training + evaluation
-    pipe.fit(Xtr, ytr)
-    pred = pipe.predict(Xte)
-
+    # 7) Entraînement + évaluation (using balanced data)
+    model.fit(Xtr_balanced, ytr_balanced)
+    pred = model.predict(Xte_preprocessed)
     acc = float(accuracy_score(yte, pred))
     f1 = float(f1_score(yte, pred))
+    
 
     # 8) Artifacts
-    joblib.dump(pipe, ART / "model.joblib")
-
-    json.dump(
-        {"accuracy": acc, "f1": f1},
-        open(ART / "metrics.json", "w", encoding="utf-8"),
-        indent=2
-    )
+    # Save preprocessing and model separately (since we don't use Pipeline anymore)
+    joblib.dump({
+        'preprocessor': pre,
+        'model': model
+    }, ART / "model.joblib")
 
     save_confusion_matrix(yte, pred, ART / "confusion_matrix.png")
     
