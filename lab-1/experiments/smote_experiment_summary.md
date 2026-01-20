@@ -2,7 +2,7 @@
 
 ## 📋 Experiment Metadata
 
-- **Date:** [TODAY'S_DATE]
+- **Date:** 1/20/2026
 - **Branch:** feature/smote-comparison
 - **Objective:** Compare SMOTE and class_weight approaches for handling imbalanced data
 - **Dataset:** Bank Customer Churn (10,000 samples, 20% minority class)
@@ -43,13 +43,13 @@ model:
 
 | Method       | Accuracy | F1 Score | Training Samples (Class 1) |
 | ------------ | -------- | -------- | -------------------------- |
-| class_weight | [VALUE]  | [VALUE]  | 1629 (original)            |
-| SMOTE        | [VALUE]  | [VALUE]  | 6361 (with synthetic)      |
+| class_weight | 0.7102   | 0.4908   | 1629 (original)            |
+| SMOTE        | 0.7142   | 0.4897   | 6361 (with synthetic)      |
 
-### Winner: [METHOD_NAME]
+### Winner: class_weight="balanced"
 
-- **Reason:** [Higher F1 score / Simpler / More efficient]
-- **Performance Gain:** [+/- X.XX] F1 points
+- **Reason:** Higher F1 score, simpler implementation, more efficient
+- **Performance Gain:** +0.0011 F1 points
 
 ---
 
@@ -57,32 +57,22 @@ model:
 
 ### What Worked Well:
 
-1. [Write 2-3 observations about what worked]
-2.
-3.
+1. class_weight="balanced" achieved slightly better F1 score with simpler implementation
+2. Both methods successfully handled class imbalance better than naive approach
+3. SMOTE increased accuracy but slightly decreased F1 score
 
-### What We Learned:
+### What I Learned:
 
 1. F1 score is crucial for imbalanced datasets
-2. [Add your learnings]
-3.
+2. Simpler methods (class_weight) can outperform more complex approaches (SMOTE)
+3. Synthetic data generation doesn't always guarantee better minority class prediction
+4. The performance difference was minimal (0.0011), suggesting both methods are viable
 
 ### Challenges:
 
 1. SMOTE requires preprocessing first (categorical → numeric)
-2. [Add any other challenges]
-
----
-
-## 🎯 Recommendation
-
-**For Production:** Use [WINNING_METHOD]
-
-**Reasoning:**
-
-- [Explain why this method is better]
-- [Trade-offs considered]
-- [Business impact]
+2. SMOTE increases training time due to synthetic sample generation
+3. Risk of overfitting to synthetic data with SMOTE
 
 ---
 
@@ -123,24 +113,3 @@ Xtr_balanced, ytr_balanced = smote.fit_resample(Xtr_preprocessed, ytr)
 ```
 
 ---
-
-## 🚀 Next Steps (Optional)
-
-1. ✅ Extension 1 Complete - SMOTE comparison done
-2. ⏭️ Extension 2 - Deploy as API with FastAPI (optional)
-3. 🔬 Further experiments:
-   - Try SMOTE-Tomek or SMOTE-ENN variants
-   - Test different sampling ratios
-   - Experiment with other algorithms
-
----
-
-## 📚 References
-
-- [imbalanced-learn documentation](https://imbalanced-learn.org/)
-- SMOTE paper: Chawla et al. (2002)
-- MLOps best practices for experiment tracking
-
----
-
-**Experiment Status:** ✅ COMPLETE
