@@ -152,6 +152,34 @@ ls artifacts/
 
 ---
 
+## 🔮 Extensions Completed
+
+### ✅ Extension 1: SMOTE vs class_weight Comparison
+
+**Status:** Complete
+
+**Summary:** Compared two methods for handling class imbalance. [WINNING_METHOD] performed better with F1 score of [VALUE].
+
+**Details:** See `experiments/smote_experiment_summary.md`
+
+**Results:**
+
+- Baseline (class_weight): F1 = [VALUE]
+- SMOTE: F1 = [VALUE]
+- Winner: [METHOD]
+
+**Branch:** `feature/smote-comparison`
+
+---
+
+### ⏭️ Extension 2: Deploy as API (FastAPI)
+
+**Status:** Pending
+
+**Next Steps:** Create REST API endpoint to serve predictions
+
+---
+
 ## 📊 Understanding the Artifacts
 
 ### 1. `model.joblib` (Binary File)
@@ -214,19 +242,16 @@ ls artifacts/
 ## 📚 Key MLOps Concepts Demonstrated
 
 1. **Reproducibility:**
-
    - Fixed random seeds
    - Version locking (requirements.txt)
    - Configuration files
 
 2. **Traceability:**
-
    - Artifact generation
    - Version tracking (run_info.json)
    - Timestamped runs
 
 3. **Data Quality:**
-
    - Schema validation
    - Value range checks
    - Automated tests
