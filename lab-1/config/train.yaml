@@ -11,4 +11,4 @@ split:
 model:
   name: "logistic_regression"
   max_iter: 3000
-  class_weight: "balanced" # useful if classes are imbalanced
+  class_weight: "null" # useful if classes are imbalanced
