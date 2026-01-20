@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-20T10:55:22.355864Z",
+  "timestamp": "2026-01-20T15:50:01.099571Z",
   "config": {
     "data": {
       "path": "data/dataset.csv",
@@ -13,7 +13,7 @@
     "model": {
       "name": "logistic_regression",
       "max_iter": 3000,
-      "class_weight": "balanced"
+      "class_weight": "null"
     }
   },
   "versions": {
@@ -24,28 +24,28 @@
   },
   "report": {
     "0": {
-      "precision": 0.8990536277602523,
-      "recall": 0.7165304839723444,
-      "f1-score": 0.7974816369359916,
+      "precision": 0.8965785381026439,
+      "recall": 0.7247014456316782,
+      "f1-score": 0.8015293708724366,
       "support": 1591.0
     },
     "1": {
-      "precision": 0.3821917808219178,
-      "recall": 0.6855036855036855,
-      "f1-score": 0.49076517150395776,
+      "precision": 0.3848314606741573,
+      "recall": 0.6732186732186732,
+      "f1-score": 0.4897229669347632,
       "support": 407.0
     },
-    "accuracy": 0.7102102102102102,
+    "accuracy": 0.7142142142142142,
     "macro avg": {
-      "precision": 0.640622704291085,
-      "recall": 0.7010170847380149,
-      "f1-score": 0.6441234042199747,
+      "precision": 0.6407049993884006,
+      "recall": 0.6989600594251757,
+      "f1-score": 0.6456261689035999,
       "support": 1998.0
     },
     "weighted avg": {
-      "precision": 0.7937669552357768,
-      "recall": 0.7102102102102102,
-      "f1-score": 0.7350023569405773,
+      "precision": 0.7923337630709152,
+      "recall": 0.7142142142142142,
+      "f1-score": 0.7380132515517993,
       "support": 1998.0
     }
   }
