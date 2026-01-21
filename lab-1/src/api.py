@@ -19,8 +19,7 @@ app = FastAPI(
 )
 
 # Load the trained model and preprocessor
-MODEL_PATH = Path("artifacts/baseline_classweight/model.joblib")  
-
+MODEL_PATH = Path("artifacts/smote_results/model.joblib")  
 try:
     model_artifacts = joblib.load(MODEL_PATH)
     preprocessor = model_artifacts['preprocessor']
