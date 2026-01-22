@@ -31,7 +31,7 @@ This isn't just a machine learning project - it's a **production-ready MLOps pip
 ## 📁 Project Structure
 
 ```
-lab_1/
+mlops-mini-project-churn/
 ├── 📁 .pytest_cache/          # Pytest cache (auto-generated)
 ├── 📁 artifacts/              # Generated artifacts (DO NOT EDIT MANUALLY)
 │   ├── 📁 baseline_classweight/
